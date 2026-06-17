@@ -1,7 +1,8 @@
 import SwiftUI
 
 // MARK: - Practice Entry View
-// Landing screen: user selects a rhythm → Taal Info Sheet → Visualizer Screen → Live Practice
+// Landing screen: user selects a rhythm → Visualizer Screen → Live Practice
+// Cards are full-width, image-rich panels filling the screen vertically.
 
 struct PracticeEntryView: View {
 
@@ -20,10 +21,20 @@ struct PracticeEntryView: View {
 
     private let coreTaals = [Taal.teental, Taal.jhaptal, Taal.ektaal]
 
+    /// Per-taal accent color, consistent with the rest of the app
+    private func accentColor(for taal: Taal) -> Color {
+        switch taal.id {
+        case "teental": return KathakTheme.warmGold
+        case "jhaptal":  return KathakTheme.terracotta
+        case "ektaal":   return KathakTheme.saffron
+        default:         return KathakTheme.warmGold
+        }
+    }
+
     var body: some View {
         NavigationStack(path: $navPath) {
             ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 24) {
+                VStack(alignment: .leading, spacing: 20) {
 
                     // Header
                     VStack(alignment: .leading, spacing: 6) {
@@ -38,8 +49,8 @@ struct PracticeEntryView: View {
                     .padding(.horizontal, 20)
                     .padding(.top, 8)
 
-                    // Rhythm cards
-                    VStack(spacing: 20) {
+                    // Full-screen rhythm cards
+                    VStack(spacing: 18) {
                         ForEach(Array(coreTaals.enumerated()), id: \.element.id) { index, taal in
                             Button {
                                 #if canImport(UIKit)
@@ -58,9 +69,9 @@ struct PracticeEntryView: View {
                     }
                     .padding(.horizontal, 20)
 
-                }
+                } // VStack
                 .padding(.bottom, 40)
-            }
+            } // ScrollView
             .background(
                 ZStack {
                     KathakTheme.backgroundGradient.ignoresSafeArea()
@@ -101,60 +112,78 @@ struct PracticeEntryView: View {
         }
     }
 
-    // MARK: - Rhythm Card
+    // MARK: - Full-Screen Rhythm Card
 
     private func rhythmCard(_ taal: Taal, index: Int) -> some View {
-        HStack(spacing: 16) {
-            // Waveform icon
-            ZStack {
-                RoundedRectangle(cornerRadius: 14)
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                KathakTheme.warmGold.opacity(0.18),
-                                KathakTheme.warmGold.opacity(0.08)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: 60, height: 60)
+        let accent = accentColor(for: taal)
 
-                Image(systemName: taal.icon)
-                    .font(KathakTheme.titleFont)
-                    .foregroundStyle(KathakTheme.brightGold)
-            }
-
-            VStack(alignment: .leading, spacing: 6) {
+        return HStack(spacing: 0) {
+            // Left: Text content
+            VStack(alignment: .leading, spacing: 8) {
+                // Taal name
                 Text(taal.name)
-                    .font(KathakTheme.headlineFont)
-                    .foregroundStyle(KathakTheme.softBeige)
+                    .font(KathakTheme.title2Font)
+                    .foregroundStyle(KathakTheme.creamWhite)
 
+                // Meaning description
+                Text(taal.meaningDescription)
+                    .font(KathakTheme.captionFont)
+                    .foregroundStyle(KathakTheme.softBeige.opacity(0.7))
+                    .lineLimit(3)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                Spacer()
+
+                // Badges
                 HStack(spacing: 8) {
                     badge(text: "\(taal.totalBeats) Beats", color: KathakTheme.saffron)
                     badge(text: "\(taal.vibhaags.count) Vibhaags", color: KathakTheme.terracotta)
                 }
+
+                // Chevron hint
+                HStack(spacing: 4) {
+                    Text("Start Practice")
+                        .font(KathakTheme.captionFont)
+                        .foregroundStyle(accent.opacity(0.6))
+                    Image(systemName: "chevron.right")
+                        .font(KathakTheme.caption2Font)
+                        .foregroundStyle(accent.opacity(0.5))
+                }
+                .padding(.top, 2)
             }
+            .padding(18)
+            .frame(maxWidth: .infinity, alignment: .leading)
 
-            Spacer()
-
-            Image(systemName: "chevron.right")
-                .font(KathakTheme.subheadlineFont)
-                .foregroundStyle(KathakTheme.warmGold.opacity(0.4))
+            // Right: Image
+            Image(taal.imageName)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 150)
+                .clipped()
         }
-        .padding(18)
+        .frame(height: isCompactHeight ? 160 : 200)
         .background(
-            RoundedRectangle(cornerRadius: 20)
-                .fill(KathakTheme.warmGold.opacity(0.04))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(KathakTheme.warmGold.opacity(0.18), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 22)
+                .fill(
+                    LinearGradient(
+                        colors: [
+                            KathakTheme.deepBrown,
+                            KathakTheme.charcoal.opacity(0.9)
+                        ],
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
                 )
-                .shadow(color: Color.black.opacity(0.2), radius: 12, y: 5)
         )
-        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20))
+        .clipShape(RoundedRectangle(cornerRadius: 22))
+        .overlay(
+            RoundedRectangle(cornerRadius: 22)
+                .stroke(accent.opacity(0.2), lineWidth: 1)
+        )
+        .shadow(color: Color.black.opacity(0.3), radius: 14, y: 6)
         .opacity(animateCards ? 1 : 0)
-        .offset(y: animateCards ? 0 : 20)
+        .offset(y: animateCards ? 0 : 25)
         .animation(
             .spring(response: 0.5, dampingFraction: 0.8).delay(Double(index) * 0.08),
             value: animateCards
@@ -171,10 +200,10 @@ struct PracticeEntryView: View {
             .padding(.vertical, 5)
             .background(
                 Capsule()
-                    .fill(color.opacity(0.12))
+                    .fill(color.opacity(0.15))
                     .overlay(
                         Capsule()
-                            .stroke(color.opacity(0.15), lineWidth: 0.5)
+                            .stroke(color.opacity(0.2), lineWidth: 0.5)
                     )
             )
     }

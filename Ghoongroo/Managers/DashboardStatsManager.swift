@@ -1,9 +1,12 @@
 import SwiftUI
 import Combine
+import SwiftData
 
 // MARK: - Dashboard Stats Manager
-// Tracks practice statistics using @AppStorage for persistence
+// Tracks practice statistics using @AppStorage for lightweight persistence (streaks,
+// last score) and SwiftData for full session history.
 
+@MainActor
 final class DashboardStatsManager: ObservableObject {
 
     @AppStorage("streakCount") var streakCount: Int = 0
@@ -21,11 +24,31 @@ final class DashboardStatsManager: ObservableObject {
         case future
     }
 
+    // MARK: - Published daily data (refreshed on appear)
+
+    @Published var todaySessionCount: Int = 0
+    @Published var todayBestScore: Double = 0
+    @Published var todayTotalSeconds: Double = 0
+    @Published var todayTaals: [String] = []
+    @Published var recentHistory: [PracticeSessionRecord] = []
+    @Published var allTimeBest: Double = 0
+
     // MARK: - Computed
 
     var totalPracticeTimeFormatted: String {
         let minutes = Int(totalPracticeSeconds) / 60
         let seconds = Int(totalPracticeSeconds) % 60
+        if minutes >= 60 {
+            let hours = minutes / 60
+            let mins = minutes % 60
+            return "\(hours)h \(mins)m"
+        }
+        return "\(minutes)m \(seconds)s"
+    }
+
+    var todayPracticeTimeFormatted: String {
+        let minutes = Int(todayTotalSeconds) / 60
+        let seconds = Int(todayTotalSeconds) % 60
         if minutes >= 60 {
             let hours = minutes / 60
             let mins = minutes % 60
@@ -78,9 +101,44 @@ final class DashboardStatsManager: ObservableObject {
         }
     }
 
-    // MARK: - Actions
+    // MARK: - Refresh (call on view appear)
 
-    func recordPractice(score: Double, durationSeconds: Double) {
+    func refreshDailyStats() {
+        let context = DatabaseManager.shared.context
+
+        let calendar = Calendar.current
+        let todayStart = calendar.startOfDay(for: Date())
+        guard let todayEnd = calendar.date(byAdding: .day, value: 1, to: todayStart) else { return }
+
+        // Fetch today's sessions
+        let todayPredicate = #Predicate<PracticeSessionRecord> { record in
+            record.date >= todayStart && record.date < todayEnd
+        }
+        let todayDescriptor = FetchDescriptor<PracticeSessionRecord>(predicate: todayPredicate)
+        let todayRecords = (try? context.fetch(todayDescriptor)) ?? []
+
+        todaySessionCount = todayRecords.count
+        todayBestScore = todayRecords.map(\.graceScore).max() ?? 0
+        todayTotalSeconds = todayRecords.reduce(0) { $0 + $1.durationSeconds }
+        todayTaals = Array(Set(todayRecords.map(\.taalName)))
+
+        // Load last 10 sessions for recent history display
+        var historyDescriptor = FetchDescriptor<PracticeSessionRecord>(
+            sortBy: [SortDescriptor(\.date, order: .reverse)]
+        )
+        historyDescriptor.fetchLimit = 10
+        recentHistory = (try? context.fetch(historyDescriptor)) ?? []
+
+        // All-time best
+        let allSessionsDescriptor = FetchDescriptor<PracticeSessionRecord>()
+        let allSessions = (try? context.fetch(allSessionsDescriptor)) ?? []
+        allTimeBest = allSessions.map(\.graceScore).max() ?? 0
+    }
+
+    // MARK: - Record Practice Session
+
+    func recordPractice(score: Double, durationSeconds: Double, taalId: String, taalName: String, scoreResult: ScoreResult? = nil) {
+        // 1. Update lightweight AppStorage stats
         lastPracticeScore = score
         totalPracticeSeconds += durationSeconds
 
@@ -105,6 +163,31 @@ final class DashboardStatsManager: ObservableObject {
 
         lastPracticeDateInterval = Date().timeIntervalSince1970
         markTodayAsPracticed()
+
+        // 2. Save full session record to SwiftData
+        let context = DatabaseManager.shared.context
+        let record = PracticeSessionRecord(
+            id: UUID().uuidString,
+            date: Date(),
+            taalId: taalId,
+            taalName: taalName,
+            graceScore: score,
+            postureAccuracy: scoreResult?.postureAccuracy ?? score,
+            stepAccuracy: scoreResult?.stepAccuracy ?? score,
+            timingPrecision: scoreResult?.timingPrecision ?? score,
+            durationSeconds: durationSeconds,
+            strongestRegion: scoreResult?.strongestRegion ?? "Unknown",
+            weakestRegion: scoreResult?.weakestRegion ?? "Unknown"
+        )
+        context.insert(record)
+        do {
+            try context.save()
+        } catch {
+            print("[SwiftData] Failed to save session: \(error)")
+        }
+
+        // 3. Refresh published daily data
+        refreshDailyStats()
     }
 
     // MARK: - Weekly Tracking Helpers

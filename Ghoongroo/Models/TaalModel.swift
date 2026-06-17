@@ -13,6 +13,8 @@ struct Taal: Identifiable, Hashable {
     let markers: [Int: BeatAccent]    // Beat number → accent type
     let description: String
     let icon: String                  // SF Symbol
+    let imageName: String             // Asset image for card display
+    let meaningDescription: String    // Short meaning shown on card
 
     /// Type of structural accent on a beat
     enum BeatAccent: String {
@@ -75,7 +77,9 @@ extension Taal {
             13: .taali
         ],
         description: "The most common taal in Hindustani music. A 16-beat cycle divided into four equal vibhaags of 4 beats each. It is the foundation for most Kathak compositions and the first taal every student learns.",
-        icon: "waveform.path"
+        icon: "waveform.path",
+        imageName: "teental_card",
+        meaningDescription: "The foundation of Kathak — a balanced 16-beat cycle (4×4) that anchors every classical performance."
     )
 
     // ─── Jhaptal (10 beats) ────────────────────────────────
@@ -99,7 +103,9 @@ extension Taal {
             8:  .taali
         ],
         description: "A 10-beat cycle with asymmetric vibhaags (2+3+2+3), creating a distinctive lilting rhythm. Commonly used in khayal performances and semi-classical Kathak compositions that require a more nuanced rhythmic feel.",
-        icon: "waveform.path"
+        icon: "waveform.path",
+        imageName: "jhaptal_card",
+        meaningDescription: "An asymmetric 10-beat cycle (2+3+2+3) — its lilting rhythm gives Khayal its distinctive nuance."
     )
 
     // ─── Ektaal (12 beats) ─────────────────────────────────
@@ -127,6 +133,8 @@ extension Taal {
             11: .taali
         ],
         description: "A 12-beat cycle divided into six pairs, used extensively in slow-tempo (vilambit) compositions. Its symmetrical structure allows for elaborate improvisations and is favored in classical Kathak for its meditative, expansive quality.",
-        icon: "waveform.path"
+        icon: "waveform.path",
+        imageName: "ektaal_card",
+        meaningDescription: "A meditative 12-beat cycle of six pairs — favored for slow, expansive Vilambit compositions."
     )
 }

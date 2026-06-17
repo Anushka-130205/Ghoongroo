@@ -38,7 +38,8 @@ final class PracticeSessionController: ObservableObject {
         let bpm = beatManager.bpm
         let timestamps = beatManager.beatTimestamps
         let frames = poseDetector.frameHistory
-        
+        let practiceStartTime = sessionStartTime
+
         // This Task inherits MainActor context
         Task {
             // Run scoring off main thread to prevent hang during transition
@@ -61,6 +62,24 @@ final class PracticeSessionController: ObservableObject {
             self.scoreResult = score
             self.showResult = true
             self.isPracticing = false
+
+            // Save session data to persistent storage
+            let duration: Double
+            if let start = practiceStartTime {
+                duration = CACurrentMediaTime() - start
+            } else {
+                // Estimate from beat count and BPM
+                duration = Double(taal.totalBeats) * (60.0 / bpm)
+            }
+
+            let statsManager = DashboardStatsManager()
+            statsManager.recordPractice(
+                score: score.graceScore,
+                durationSeconds: duration,
+                taalId: taal.id,
+                taalName: taal.name,
+                scoreResult: score
+            )
         }
     }
 

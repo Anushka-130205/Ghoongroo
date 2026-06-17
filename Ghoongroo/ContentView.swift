@@ -19,7 +19,7 @@ struct ContentView: View {
         
         // Deep translucent background with blur
         appearance.backgroundEffect = UIBlurEffect(style: .systemChromeMaterialDark)
-        appearance.backgroundColor = UIColor(red: 0.08, green: 0.06, blue: 0.12, alpha: 0.75)
+        appearance.backgroundColor = UIColor(red: 0.18, green: 0.13, blue: 0.11, alpha: 0.75)
         
         // Subtle top separator
         appearance.shadowColor = UIColor.white.withAlphaComponent(0.06)

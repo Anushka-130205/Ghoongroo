@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 // MARK: - Ghoongroo
 // Swift Student Challenge App — Practice Kathak with AI-powered pose feedback
@@ -10,6 +11,7 @@ struct GhoongrooApp: App {
             ContentView()
                 .preferredColorScheme(.dark)
                 .tint(KathakTheme.warmGold)
+                .modelContainer(DatabaseManager.shared.container)
         }
     }
 }

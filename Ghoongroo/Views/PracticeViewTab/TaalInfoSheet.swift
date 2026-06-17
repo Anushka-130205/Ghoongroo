@@ -207,13 +207,10 @@ struct TaalInfoSheet: View {
     private func sectionTitle(_ title: String, icon: String) -> some View {
         HStack(spacing: 6) {
             Image(systemName: icon)
-                .font(.title3)
-                .bold()
+                .font(KathakTheme.title3Font)
                 .foregroundStyle(KathakTheme.warmGold)
             Text(title)
-                .font(.title3)
-                .bold()
-                .font(KathakTheme.headlineFont)
+                .font(KathakTheme.title3Font)
                 .foregroundStyle(KathakTheme.softBeige)
         }
     }
