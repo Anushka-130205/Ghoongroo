@@ -12,6 +12,9 @@ struct KathakFrameData {
     // Core structure
     let neck: CGPoint?
     let root: CGPoint? // Pelvis
+    let nose: CGPoint?
+    let leftEye: CGPoint?
+    let rightEye: CGPoint?
     
     // Arms
     let leftShoulder: CGPoint?
@@ -35,19 +38,22 @@ struct KathakFrameData {
         
         self.neck = joints.first { $0.name.contains("neck") }?.position
         self.root = joints.first { $0.name.contains("root") }?.position
+        self.nose = joints.first { $0.name.contains("nose") }?.position
+        self.leftEye = joints.first { $0.name.contains("left_eye") }?.position
+        self.rightEye = joints.first { $0.name.contains("right_eye") }?.position
         
         self.leftShoulder = joints.first { $0.name.contains("left_shoulder") }?.position
         self.rightShoulder = joints.first { $0.name.contains("right_shoulder") }?.position
-        self.leftElbow = joints.first { $0.name.contains("left_elbow") }?.position
-        self.rightElbow = joints.first { $0.name.contains("right_elbow") }?.position
-        self.leftWrist = joints.first { $0.name.contains("left_wrist") }?.position
-        self.rightWrist = joints.first { $0.name.contains("right_wrist") }?.position
+        self.leftElbow = joints.first { $0.name.contains("left_forearm") }?.position
+        self.rightElbow = joints.first { $0.name.contains("right_forearm") }?.position
+        self.leftWrist = joints.first { $0.name.contains("left_hand") }?.position
+        self.rightWrist = joints.first { $0.name.contains("right_hand") }?.position
         
-        self.leftHip = joints.first { $0.name.contains("left_hip") }?.position
-        self.rightHip = joints.first { $0.name.contains("right_hip") }?.position
-        self.leftKnee = joints.first { $0.name.contains("left_knee") }?.position
-        self.rightKnee = joints.first { $0.name.contains("right_knee") }?.position
-        self.leftAnkle = joints.first { $0.name.contains("left_ankle") }?.position
-        self.rightAnkle = joints.first { $0.name.contains("right_ankle") }?.position
+        self.leftHip = joints.first { $0.name.contains("left_upLeg") }?.position
+        self.rightHip = joints.first { $0.name.contains("right_upLeg") }?.position
+        self.leftKnee = joints.first { $0.name.contains("left_leg") }?.position
+        self.rightKnee = joints.first { $0.name.contains("right_leg") }?.position
+        self.leftAnkle = joints.first { $0.name.contains("left_foot") }?.position
+        self.rightAnkle = joints.first { $0.name.contains("right_foot") }?.position
     }
 }

@@ -22,6 +22,7 @@ final class PoseDetector: ObservableObject {
 
     // Tracked joint names for Kathak analysis
     private let trackedJoints: [VNHumanBodyPoseObservation.JointName] = [
+        .nose, .leftEye, .rightEye,
         .neck, .root,
         .leftShoulder, .rightShoulder,
         .leftElbow, .rightElbow,

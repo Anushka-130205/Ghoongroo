@@ -51,12 +51,13 @@ class GraceScoreEngine {
     private var frameHistory: [KathakFrameData] = []
     
     // Weights
-    private let wSpine: Double = 0.25
-    private let wShoulders: Double = 0.20
-    private let wArms: Double = 0.20
-    private let wHips: Double = 0.15
+    // Weights (Emphasizing Arms/Hands as requested)
+    private let wSpine: Double = 0.15
+    private let wShoulders: Double = 0.10
+    private let wArms: Double = 0.40
+    private let wHips: Double = 0.10
     private let wKnees: Double = 0.10
-    private let wTiming: Double = 0.10 // Appears in Posture Calculation per prompt
+    private let wTiming: Double = 0.15
     
     // Memory mapping
     private var beatToFrameMap: [TimeInterval: KathakFrameData] = [:]
@@ -78,6 +79,13 @@ class GraceScoreEngine {
         let insufficient = frameHistory.count < 10
         if insufficient {
             return generateFallbackScore(url: videoURL)
+        }
+        
+        // 0. Detect Static Pose (Zero Score if standing/sitting still)
+        // With the new bounding box spread calculation, a dancing person will easily exceed 1.0.
+        // Even with severe tracking jitter, standing still will stay below 0.40.
+        if calculateTotalMovement() < 0.40 { 
+            return generateZeroScore(url: videoURL)
         }
         
         // 1. Map Frames to Beats (Timing Sync)
@@ -143,12 +151,32 @@ class GraceScoreEngine {
         
         // 4. Final Grace Score Formula
         // Grace Score = (Average Posture Score × 0.6) + (Step Accuracy × 0.25) + (Timing Precision × 0.15)
-        let graceScore = clamp(
+        var graceScore = clamp(
             (averagePostureScore * 0.6) +
             (stepAccuracy * 0.25) +
             (timingPrecision * 0.15),
             min: 0, max: 100
         )
+        
+        // 5. Spin Bonus (Chakkars)
+        let spinCount = detectSpins()
+        if spinCount > 0 {
+            graceScore = clamp(graceScore + Double(spinCount) * 5.0, min: 0, max: 100)
+        }
+        
+        // 6. Flailing / Non-Kathak Pose Penalty
+        if stepAccuracy < 40 {
+            // If the core steps don't map to Kathak logic (e.g. random flailing), the movement is meaningless.
+            return ScoreResult(
+                graceScore: 0, postureAccuracy: 0, stepAccuracy: 0, timingPrecision: 0,
+                strongestRegion: "None", weakestRegion: "None", timelineDots: [],
+                jointAlignment: 0, balanceStability: 0, rhythmSync: 0, movementSmoothness: 0,
+                detectedStep: "Unrecognized", stabilityLabel: "Poor Form", mlPostureLabel: "Non-Kathak",
+                isInsufficientData: false, videoURL: videoURL
+            )
+        } else if stepAccuracy < 60 {
+            graceScore *= 0.5 // Massive penalty for poor adherence to datasets
+        }
         
         // Find Strongest and Weakest Regions
         let avgRegions = regionScores.mapValues { vals in
@@ -224,6 +252,7 @@ class GraceScoreEngine {
         let armError: Double
         let hipError: Double
         let kneeError: Double
+        let facialAlignmentError: Double
         let overallCosineSimilarity: Double
     }
     
@@ -249,7 +278,7 @@ class GraceScoreEngine {
               let lHip = frame.leftHip, let rHip = frame.rightHip else {
             return PostureEvaluation(
                 spineError: 90, shoulderError: 90, armError: 90,
-                hipError: 90, kneeError: 90, overallCosineSimilarity: 0
+                hipError: 90, kneeError: 90, facialAlignmentError: 90, overallCosineSimilarity: 0
             )
         }
 
@@ -260,12 +289,29 @@ class GraceScoreEngine {
         let shoulderError = angleFromHorizontal(lShoulder, rShoulder)
         let hipError = angleFromHorizontal(lHip, rHip)
 
-        // Arms: elevation of each shoulder→wrist line; the two should mirror each other.
+        // Arms: elevation of each shoulder→wrist line.
+        // In Kathak, arms usually sit in specific bands (0°, 45°, 90° from horizontal).
+        // If an arm is at a random angle, it deviates from standard dataset poses.
         let armError: Double
         if let lWrist = frame.leftWrist, let rWrist = frame.rightWrist {
             let leftElevation = angleFromHorizontal(lShoulder, lWrist)
             let rightElevation = angleFromHorizontal(rShoulder, rWrist)
-            armError = abs(leftElevation - rightElevation)
+            
+            let symmetryError = abs(leftElevation - rightElevation)
+            
+            // Check if angles fall into standard Kathak bands (0, 45, 90)
+            func bandError(_ angle: Double) -> Double {
+                let d0 = abs(angle - 0)
+                let d45 = abs(angle - 45)
+                let d90 = abs(angle - 90)
+                return min(d0, min(d45, d90))
+            }
+            
+            let lBandError = bandError(leftElevation)
+            let rBandError = bandError(rightElevation)
+            
+            // Heavy penalty for non-Kathak angles (flailing)
+            armError = symmetryError + (lBandError * 2.0) + (rBandError * 2.0)
         } else {
             armError = 0 // not visible → don't penalise
         }
@@ -281,10 +327,20 @@ class GraceScoreEngine {
             kneeError = 0 // not visible → don't penalise
         }
 
-        // Shape similarity (0…1) for step accuracy: how close every measured region sits
-        // to its ideal, where a full 90° of deviation maps to 0.
+        // Facial Alignment: Angle between nose and shoulders. The head should ideally look forward or follow the hands.
+        // We calculate if the nose is severely misaligned compared to the shoulder plane.
+        let facialAlignmentError: Double
+        if let nose = frame.nose {
+            let neckPoint = neck
+            let headAngle = angleFromVertical(from: neckPoint, to: nose)
+            facialAlignmentError = headAngle
+        } else {
+            facialAlignmentError = 0 // not visible
+        }
+
+        // Shape similarity (0…1) for step accuracy
         let maxDeviation = 90.0
-        let measured = [spineError, shoulderError, hipError, armError]
+        let measured = [spineError, shoulderError, hipError, armError, facialAlignmentError]
         let similarity = measured
             .map { max(0.0, 1.0 - ($0 / maxDeviation)) }
             .reduce(0.0, +) / Double(measured.count)
@@ -295,6 +351,7 @@ class GraceScoreEngine {
             armError: armError,
             hipError: hipError,
             kneeError: kneeError,
+            facialAlignmentError: facialAlignmentError,
             overallCosineSimilarity: max(0.0, min(1.0, similarity))
         )
     }
@@ -343,5 +400,75 @@ class GraceScoreEngine {
             detectedStep: "No Data", stabilityLabel: "N/A", mlPostureLabel: "N/A",
             isInsufficientData: true, videoURL: url
         )
+    }
+
+    private func generateZeroScore(url: URL?) -> ScoreResult {
+        ScoreResult(
+            graceScore: 0, postureAccuracy: 0, stepAccuracy: 0, timingPrecision: 0,
+            strongestRegion: "None", weakestRegion: "None", timelineDots: [],
+            jointAlignment: 0, balanceStability: 0, rhythmSync: 0, movementSmoothness: 0,
+            detectedStep: "Standing Still", stabilityLabel: "No Movement", mlPostureLabel: "Zero Score",
+            isInsufficientData: false, videoURL: url
+        )
+    }
+
+    // MARK: - Movement & Spin Detection
+    
+    private func calculateTotalMovement() -> Double {
+        guard frameHistory.count > 1 else { return 0.0 }
+        
+        func spread(for extractor: (KathakFrameData) -> CGPoint?) -> Double {
+            var minX: CGFloat = 1000.0, maxX: CGFloat = -1000.0
+            var minY: CGFloat = 1000.0, maxY: CGFloat = -1000.0
+            var found = false
+            
+            for frame in frameHistory {
+                guard let p = extractor(frame) else { continue }
+                found = true
+                if p.x < minX { minX = p.x }
+                if p.x > maxX { maxX = p.x }
+                if p.y < minY { minY = p.y }
+                if p.y > maxY { maxY = p.y }
+            }
+            guard found else { return 0.0 }
+            return Double((maxX - minX) + (maxY - minY))
+        }
+        
+        let lwSpread = spread { $0.leftWrist }
+        let rwSpread = spread { $0.rightWrist }
+        let laSpread = spread { $0.leftAnkle }
+        let raSpread = spread { $0.rightAnkle }
+        
+        return lwSpread + rwSpread + laSpread + raSpread
+    }
+    
+    private func detectSpins() -> Int {
+        var spinCount = 0
+        var isSpinning = false
+        
+        for frame in frameHistory {
+            guard let ls = frame.leftShoulder, let rs = frame.rightShoulder else { continue }
+            
+            // In a 2D pose detection, turning completely around causes the left and right shoulders to cross
+            // (i.e. leftShoulder.x > rightShoulder.x temporarily).
+            if ls.x > rs.x {
+                if !isSpinning {
+                    isSpinning = true
+                }
+            } else {
+                if isSpinning {
+                    spinCount += 1
+                    isSpinning = false
+                }
+            }
+        }
+        return spinCount
+    }
+    
+    private func distance(_ p1: CGPoint?, _ p2: CGPoint?) -> Double {
+        guard let p1 = p1, let p2 = p2 else { return 0.0 }
+        let dx = p1.x - p2.x
+        let dy = p1.y - p2.y
+        return sqrt(Double(dx*dx + dy*dy))
     }
 }

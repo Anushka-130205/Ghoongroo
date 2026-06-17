@@ -68,19 +68,21 @@ struct ResultView: View {
                                 .background(Color.white.opacity(0.15))
                             
                             // Insights
-                            VStack(spacing: 16) {
-                                InsightRow(
-                                    icon: "star.fill",
-                                    label: "Strongest Area",
-                                    text: "Excellent \(score.strongestRegion.lowercased()) control",
-                                    color: KathakTheme.warmGold
-                                )
-                                InsightRow(
-                                    icon: "arrow.up.forward.circle.fill",
-                                    label: "Improvement Suggestion",
-                                    text: "Focus on stabilizing \(score.weakestRegion.lowercased()) alignment",
-                                    color: KathakTheme.terracotta
-                                )
+                            if score.graceScore > 0 {
+                                VStack(spacing: 16) {
+                                    InsightRow(
+                                        icon: "star.fill",
+                                        label: "Strongest Area",
+                                        text: "Excellent \(score.strongestRegion.lowercased()) control",
+                                        color: KathakTheme.warmGold
+                                    )
+                                    InsightRow(
+                                        icon: "arrow.up.forward.circle.fill",
+                                        label: "Improvement Suggestion",
+                                        text: "Focus on stabilizing \(score.weakestRegion.lowercased()) alignment",
+                                        color: KathakTheme.terracotta
+                                    )
+                                }
                             }
                         }
                         .padding(28)
@@ -112,16 +114,6 @@ struct ResultView: View {
                         .padding(.vertical, 16)
                         .background(KathakTheme.goldShimmer, in: Capsule())
                     }
-                    
-                    Button(action: onHome) {
-                        Text("Back to Dashboard")
-                            .font(KathakTheme.headlineFont)
-                            .foregroundStyle(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background(Color.white.opacity(0.1), in: Capsule())
-                            .overlay(Capsule().stroke(Color.white.opacity(0.2), lineWidth: 1))
-                    }
                 }
                 .padding(.horizontal, 24)
                 .padding(.bottom, 40)
@@ -134,6 +126,7 @@ struct ResultView: View {
                         ))
                 )
             }
+            .frame(maxWidth: 600)
         }
         .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
@@ -142,16 +135,18 @@ struct ResultView: View {
         .toolbarColorScheme(.dark, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: { showAIFeedback = true }) {
-                    HStack(spacing: 4) {
-                        Image(systemName: "sparkles")
-                        Text("Feedback")
+                if score.graceScore > 0 {
+                    Button(action: { showAIFeedback = true }) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "sparkles")
+                            Text("Feedback")
+                        }
+                        .font(KathakTheme.subheadlineFont.weight(.medium))
+                        .foregroundStyle(KathakTheme.warmGold)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 6)
+                        .background(KathakTheme.warmGold.opacity(0.15), in: Capsule())
                     }
-                    .font(KathakTheme.subheadlineFont.weight(.medium))
-                    .foregroundStyle(KathakTheme.warmGold)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 6)
-                    .background(KathakTheme.warmGold.opacity(0.15), in: Capsule())
                 }
             }
         }

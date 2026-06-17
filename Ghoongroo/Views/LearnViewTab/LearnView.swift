@@ -311,10 +311,7 @@ struct LearnView: View {
                 )
             }
 
-            // Recent Sessions
-            if !statsManager.recentHistory.isEmpty {
-                recentSessionsSection
-            }
+
         }
         .padding(.horizontal, 20)
         .onAppear {
@@ -322,99 +319,8 @@ struct LearnView: View {
         }
     }
 
-    // MARK: - Recent Sessions Section
-
-    private var recentSessionsSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                Image(systemName: "clock.arrow.circlepath")
-                    .font(KathakTheme.subheadlineFont)
-                    .foregroundStyle(KathakTheme.warmGold)
-                Text("Recent Sessions")
-                    .font(KathakTheme.headlineFont)
-                    .foregroundStyle(KathakTheme.softBeige)
-                Spacer()
-            }
-
-            ForEach(statsManager.recentHistory.prefix(5)) { session in
-                HStack(spacing: 12) {
-                    // Score circle
-                    ZStack {
-                        Circle()
-                            .stroke(scoreColor(session.graceScore).opacity(0.3), lineWidth: 2)
-                            .frame(width: 38, height: 38)
-                        Text("\(Int(session.graceScore))")
-                            .font(KathakTheme.captionFont)
-                            .foregroundStyle(scoreColor(session.graceScore))
-                    }
-
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(session.taalName)
-                            .font(KathakTheme.calloutFont)
-                            .foregroundStyle(KathakTheme.softBeige)
-                        Text(sessionDateFormatted(session.date))
-                            .font(KathakTheme.caption2Font)
-                            .foregroundStyle(KathakTheme.softBeige.opacity(0.4))
-                    }
-
-                    Spacer()
-
-                    Text(formatDuration(session.durationSeconds))
-                        .font(KathakTheme.captionFont)
-                        .foregroundStyle(KathakTheme.softBeige.opacity(0.5))
-                }
-                .padding(.vertical, 6)
-
-                if session.id != statsManager.recentHistory.prefix(5).last?.id {
-                    Divider().background(KathakTheme.warmGold.opacity(0.08))
-                }
-            }
-        }
-        .padding(16)
-        .background(
-            RoundedRectangle(cornerRadius: KathakTheme.CornerRadius.lg)
-                .fill(KathakTheme.warmGold.opacity(0.04))
-                .overlay(
-                    RoundedRectangle(cornerRadius: KathakTheme.CornerRadius.lg)
-                        .stroke(KathakTheme.warmGold.opacity(0.12), lineWidth: 1)
-                )
-        )
-        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: KathakTheme.CornerRadius.lg))
-    }
 
     // MARK: - Helpers
-
-    private func scoreColor(_ score: Double) -> Color {
-        switch score {
-        case 80...100: return .green
-        case 60..<80:  return KathakTheme.warmGold
-        case 40..<60:  return KathakTheme.saffron
-        default:       return KathakTheme.terracotta
-        }
-    }
-
-    private func sessionDateFormatted(_ date: Date) -> String {
-        let calendar = Calendar.current
-        if calendar.isDateInToday(date) {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "h:mm a"
-            return "Today, \(formatter.string(from: date))"
-        } else if calendar.isDateInYesterday(date) {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "h:mm a"
-            return "Yesterday, \(formatter.string(from: date))"
-        } else {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "MMM d, h:mm a"
-            return formatter.string(from: date)
-        }
-    }
-
-    private func formatDuration(_ seconds: Double) -> String {
-        let mins = Int(seconds) / 60
-        let secs = Int(seconds) % 60
-        return mins > 0 ? "\(mins)m \(secs)s" : "\(secs)s"
-    }
 
     private func dashboardCard(icon: String, value: String, label: String, color: Color, compact: Bool) -> some View {
         VStack(spacing: compact ? 6 : 8) {

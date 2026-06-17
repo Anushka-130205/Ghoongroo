@@ -34,7 +34,16 @@ struct PracticeView: View {
 
             if navigateToResult, let score = session.scoreResult {
                 ResultView(score: score, taalName: selectedTaal.name) {
-                    // Practice again (pop to rhythm selection)
+                    // Practice again (pop back to TaalVisualizerScreen - the start practicing screen)
+                    cleanupRecording(url: score.videoURL)
+                    session.reset()
+                    resetSessionLocal()
+                    withAnimation { navigateToResult = false }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        dismiss()
+                    }
+                } onHome: {
+                    // Explore More Taals (pop all the way back to PracticeEntryView - rhythm selection list)
                     cleanupRecording(url: score.videoURL)
                     session.reset()
                     resetSessionLocal()
@@ -42,10 +51,6 @@ struct PracticeView: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         if let pop = onPopToRoot { pop() } else { dismiss() }
                     }
-                } onHome: {
-                    cleanupRecording(url: score.videoURL)
-                    withAnimation { navigateToResult = false }
-                    dismiss()
                 }
                 .transition(.opacity)
                 .zIndex(1)
@@ -69,6 +74,7 @@ struct PracticeView: View {
         }
         .onChange(of: session.showResult) { old, new in
             if new {
+                cameraManager.stop()
                 withAnimation(.easeInOut(duration: 0.8)) {
                     navigateToResult = true
                 }
@@ -84,18 +90,19 @@ struct PracticeView: View {
         .toolbarBackground(.hidden, for: .navigationBar)
         #if os(iOS)
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                HStack(spacing: 6) {
-                    Circle()
-                        .fill(poseDetector.isPersonDetected ? .green : .red)
-                        .frame(width: 8, height: 8)
-                    Text(poseDetector.isPersonDetected ? "Tracking" : "No pose")
-                        .font(KathakTheme.captionFont)
-                        .foregroundStyle(.white)
+            if !navigateToResult {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    HStack(spacing: 6) {
+                        Circle()
+                            .fill(poseDetector.isPersonDetected ? .green : .red)
+                            .frame(width: 8, height: 8)
+                        Text(poseDetector.isPersonDetected ? "Tracking" : "No pose")
+                            .font(KathakTheme.captionFont)
+                            .foregroundStyle(.white)
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 6)
                 }
-                .padding(.horizontal, 10)
-                .padding(.vertical, 6)
-
             }
         }
         #endif
@@ -116,7 +123,7 @@ struct PracticeView: View {
                     selectedTaal: selectedTaal
                 )
             }
-            .aspectRatio(720.0 / 1280.0, contentMode: .fill) // Fills screen to eliminate horizontal padding
+            .aspectRatio(720.0 / 1280.0, contentMode: UIDevice.current.userInterfaceIdiom == .pad ? .fit : .fill)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             .clipped()
             .background(Color.black)
