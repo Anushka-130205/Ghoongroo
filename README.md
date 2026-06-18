@@ -1,6 +1,8 @@
 <div align="center">
 
-# 🪘 Ghoongroo
+<img src="docs/assets/appicon.jpg" alt="Ghoongroo app logo" width="120" height="120" style="border-radius: 24px;" />
+
+# Ghoongroo
 
 ### Your AI-Powered Kathak Companion
 
