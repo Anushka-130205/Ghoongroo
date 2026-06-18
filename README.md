@@ -13,6 +13,7 @@
 [![Vision](https://img.shields.io/badge/Apple-Vision-black?logo=apple)](https://developer.apple.com/documentation/vision)
 [![Privacy](https://img.shields.io/badge/Analysis-100%25%20On--Device-success)](#-privacy-first)
 [![Website](https://img.shields.io/badge/Website-Live-brightgreen)](https://anushka-130205.github.io/Ghoongroo/)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
 [**🌐 Visit the Website**](https://anushka-130205.github.io/Ghoongroo/) · [**Features**](#-features) · [**Taals**](#-taals) · [**Architecture**](#-project-structure)
 
@@ -118,6 +119,14 @@ The marketing site lives in [`docs/`](docs/) and is published with **GitHub Page
 👉 **[anushka-130205.github.io/Ghoongroo](https://anushka-130205.github.io/Ghoongroo/)**
 
 It includes the landing page, privacy policy, terms of use, and a contact/support page.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+You're free to use, modify, and distribute the code, as long as the original copyright and license notice are included.
 
 ---
 
