@@ -12,9 +12,9 @@
 [![Language](https://img.shields.io/badge/Swift-SwiftUI-orange?logo=swift)](https://developer.apple.com/swift/)
 [![Vision](https://img.shields.io/badge/Apple-Vision-black?logo=apple)](https://developer.apple.com/documentation/vision)
 [![Privacy](https://img.shields.io/badge/Analysis-100%25%20On--Device-success)](#-privacy-first)
-[![Website](https://img.shields.io/badge/Website-Live-brightgreen)](https://23scse1410133.github.io/Ghoongroo/)
+[![Website](https://img.shields.io/badge/Website-Live-brightgreen)](https://anushka-130205.github.io/Ghoongroo/)
 
-[**🌐 Visit the Website**](https://23scse1410133.github.io/Ghoongroo/) · [**Features**](#-features) · [**Taals**](#-taals) · [**Architecture**](#-project-structure)
+[**🌐 Visit the Website**](https://anushka-130205.github.io/Ghoongroo/) · [**Features**](#-features) · [**Taals**](#-taals) · [**Architecture**](#-project-structure)
 
 </div>
 
@@ -100,7 +100,7 @@ Ghoongroo/
 ### Build & Run
 ```bash
 # 1. Clone the repository
-git clone https://github.com/23SCSE1410133/Ghoongroo.git
+git clone https://github.com/Anushka-130205/Ghoongroo.git
 cd Ghoongroo
 
 # 2. Open the project in Xcode
@@ -115,7 +115,7 @@ open Ghoongroo.xcodeproj
 
 The marketing site lives in [`docs/`](docs/) and is published with **GitHub Pages**:
 
-👉 **[23scse1410133.github.io/Ghoongroo](https://23scse1410133.github.io/Ghoongroo/)**
+👉 **[anushka-130205.github.io/Ghoongroo](https://anushka-130205.github.io/Ghoongroo/)**
 
 It includes the landing page, privacy policy, terms of use, and a contact/support page.
 
