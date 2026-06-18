@@ -136,7 +136,13 @@
       margin: 0;
     }
 
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
     @media (max-width: 600px) {
+      .contact-grid { grid-template-columns: 1fr; }
       .info-strip { grid-template-columns: 1fr; }
       .email-card { padding: 32px 24px; }
     }
@@ -174,24 +180,45 @@
 <main>
   <div class="contact-body">
 
-    <!-- Email Card -->
-    <div class="email-card">
-      <div class="email-icon" aria-hidden="true">✉️</div>
-      <h2>How can we help?</h2>
-      <p class="email-card-sub">For bug reports, feature requests, feedback, or any questions about Ghoongroo — drop us an email and we'll respond as soon as possible.</p>
+    <!-- Contact Cards Grid -->
+    <div class="contact-grid">
+      <!-- Technical Support -->
+      <div class="email-card" style="padding: 32px 24px; display: flex; flex-direction: column; align-items: center;">
+        <div class="email-icon" aria-hidden="true">🛠️</div>
+        <h2 style="font-size: 1.3rem;">Technical Support</h2>
+        <p class="email-card-sub" style="margin-bottom: 24px; flex-grow: 1;">Trouble with pose detection or app performance? Let us help you fix it.</p>
+        <a href="mailto:anushkasharma09812@gmail.com?subject=Technical%20Support" class="email-btn">Get Support</a>
+      </div>
 
-      <a href="mailto:anushkasharma09812@gmail.com" class="email-btn" id="contact-email-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-          <polyline points="22,6 12,13 2,6"/>
-        </svg>
-        Email Anushka Sharma
-      </a>
+      <!-- Feature Requests -->
+      <div class="email-card" style="padding: 32px 24px; display: flex; flex-direction: column; align-items: center;">
+        <div class="email-icon" aria-hidden="true">💡</div>
+        <h2 style="font-size: 1.3rem;">Feature Requests</h2>
+        <p class="email-card-sub" style="margin-bottom: 24px; flex-grow: 1;">Have an idea for a new taal or feature? We'd love to hear your suggestions.</p>
+        <a href="mailto:anushkasharma09812@gmail.com?subject=Feature%20Request" class="email-btn">Share Ideas</a>
+      </div>
 
-      <p class="email-address">anushkasharma09812@gmail.com</p>
+      <!-- Bug Reports -->
+      <div class="email-card" style="padding: 32px 24px; display: flex; flex-direction: column; align-items: center;">
+        <div class="email-icon" aria-hidden="true">🐛</div>
+        <h2 style="font-size: 1.3rem;">Bug Reports</h2>
+        <p class="email-card-sub" style="margin-bottom: 24px; flex-grow: 1;">Found a glitch in the matrix? Let us know so we can squash it.</p>
+        <a href="mailto:anushkasharma09812@gmail.com?subject=Bug%20Report" class="email-btn">Report a Bug</a>
+      </div>
 
+      <!-- General Inquiries -->
+      <div class="email-card" style="padding: 32px 24px; display: flex; flex-direction: column; align-items: center;">
+        <div class="email-icon" aria-hidden="true">👋</div>
+        <h2 style="font-size: 1.3rem;">General Inquiries</h2>
+        <p class="email-card-sub" style="margin-bottom: 24px; flex-grow: 1;">Just want to say hi or ask a general question? Reach out anytime.</p>
+        <a href="mailto:anushkasharma09812@gmail.com?subject=General%20Inquiry" class="email-btn">Say Hello</a>
+      </div>
+    </div>
+
+    <!-- Info strip container -->
+    <div class="email-card" style="margin-top: 24px; padding: 24px 32px;">
       <!-- Info strip -->
-      <div class="info-strip">
+      <div class="info-strip" style="margin-top: 0;">
         <div class="info-item">
           <div class="info-item-icon">👩‍💻</div>
           <div class="info-item-label">Developer</div>
