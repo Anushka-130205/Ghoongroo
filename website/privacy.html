@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Ghoongroo</title>
+  <meta name="description" content="Privacy Policy for Ghoongroo iOS app. Your data never leaves your device." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪘</text></svg>" />
+  <style>
+    /* ── Page-specific overrides ── */
+    body { background: var(--maroon); }
+
+    /* Trust strip */
+    .trust-strip {
+      background: rgba(242,209,110,0.04);
+      border-bottom: 1px solid rgba(242,209,110,0.12);
+      padding: 28px 0;
+    }
+    .trust-strip-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .trust-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: rgba(28,9,9,0.6);
+      border: 1px solid rgba(242,209,110,0.15);
+      border-radius: 14px;
+    }
+    .trust-icon-wrap {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: rgba(242,209,110,0.1);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .trust-icon { width: 18px; height: 18px; color: var(--gold); }
+    .trust-text { display: flex; flex-direction: column; gap: 2px; }
+    .trust-label { font-size: 0.85rem; color: var(--beige); font-weight: 600; }
+    .trust-detail { font-size: 0.74rem; color: var(--text-muted); }
+
+    /* Policy layout */
+    .policy-outer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 32px 100px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* Sticky TOC */
+    .pp-toc {
+      position: sticky;
+      top: 88px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .toc-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      padding-left: 12px;
+    }
+    .toc-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      border-left: 2px solid transparent;
+    }
+    .toc-link:hover { color: var(--beige); background: rgba(242,209,110,0.06); }
+    .toc-link.active {
+      color: var(--gold);
+      background: rgba(242,209,110,0.08);
+      border-left-color: var(--gold);
+    }
+    .toc-num {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      min-width: 22px;
+      font-variant-numeric: tabular-nums;
+    }
+    .toc-link.active .toc-num { color: var(--gold); }
+
+    /* Policy content */
+    .policy-content { display: flex; flex-direction: column; gap: 24px; }
+
+    .pp-card {
+      background: rgba(28,9,9,0.7);
+      border: 1px solid rgba(242,209,110,0.14);
+      border-radius: 18px;
+      padding: 36px 36px 32px;
+      position: relative;
+      overflow: hidden;
+      scroll-margin-top: 100px;
+    }
+    .pp-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold) 0%, transparent 80%);
+    }
+    .pp-card.accent-green::before { background: linear-gradient(90deg, #5ecf6e, transparent 80%); }
+    .pp-card.accent-blue::before  { background: linear-gradient(90deg, #60a5fa, transparent 80%); }
+    .pp-card.accent-gold::before  { background: linear-gradient(90deg, var(--saffron), transparent 80%); }
+    .pp-card.accent-rose::before  { background: linear-gradient(90deg, #f87171, transparent 80%); }
+    .pp-card.accent-teal::before  { background: linear-gradient(90deg, #34d399, transparent 80%); }
+
+    .pp-section-num {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .pp-card h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.65rem;
+      color: var(--gold);
+      margin: 0 0 20px;
+    }
+    .pp-card h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--beige);
+      margin: 20px 0 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .pp-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin: 0 0 12px;
+    }
+
+    /* Callout box */
+    .callout {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .callout-icon { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; }
+    .callout strong { display: block; margin-bottom: 2px; }
+    .callout span { opacity: 0.8; }
+    .callout.gold   { background: rgba(242,209,110,0.1); color: #e5c967; border: 1px solid rgba(242,209,110,0.2); }
+    .callout.green  { background: rgba(94,207,110,0.08); color: #5ecf6e;  border: 1px solid rgba(94,207,110,0.2); }
+    .callout.blue   { background: rgba(96,165,250,0.08); color: #93c5fd;  border: 1px solid rgba(96,165,250,0.2); }
+    .callout.rose   { background: rgba(248,113,113,0.08); color: #fca5a5; border: 1px solid rgba(248,113,113,0.18); }
+
+    /* Info cards (what we collect) */
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .info-card {
+      background: rgba(242,209,110,0.05);
+      border: 1px solid rgba(242,209,110,0.15);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .info-card-icon { width: 28px; height: 28px; color: var(--gold); }
+    .info-card strong { font-size: 0.85rem; color: var(--beige); }
+    .info-card span { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* Denied grid (what we DON'T collect) */
+    .denied-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+    .denied-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+    }
+    .denied-x { width: 14px; height: 14px; color: #f87171; flex-shrink: 0; }
+
+    /* Check list */
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+    }
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .check-list li::before {
+      content: '';
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: rgba(94,207,110,0.15);
+      border: 1.5px solid #5ecf6e;
+      flex-shrink: 0;
+      margin-top: 2px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpolyline points='3,8 6,11 13,4' fill='none' stroke='%235ecf6e' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-size: 12px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* Tech pills */
+    .tech-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .tech-pill {
+      font-size: 0.78rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: rgba(242,209,110,0.08);
+      color: var(--gold);
+      border: 1px solid rgba(242,209,110,0.2);
+    }
+    .tech-sep { opacity: 0.4; margin: 0 4px; }
+
+    /* Rights grid */
+    .rights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+      margin-top: 8px;
+    }
+    .right-card {
+      background: rgba(242,209,110,0.05);
+      border: 1px solid rgba(242,209,110,0.12);
+      border-radius: 12px;
+      padding: 18px 16px;
+      text-align: center;
+    }
+    .right-svg { width: 22px; height: 22px; color: var(--gold); margin: 0 auto 10px; display: block; }
+    .right-card h4 { font-size: 0.88rem; color: var(--beige); margin: 0 0 6px; }
+    .right-card p { font-size: 0.78rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
+
+    /* Contact block */
+    .contact-block { margin-top: 12px; }
+    .contact-email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      background: rgba(242,209,110,0.1);
+      border: 1px solid rgba(242,209,110,0.3);
+      border-radius: 10px;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .contact-email-btn:hover { background: rgba(242,209,110,0.18); }
+    .contact-email-btn svg { width: 18px; height: 18px; }
+    .contact-meta {
+      margin-top: 12px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 20px;
+    }
+
+    /* Page hero */
+    .pp-hero {
+      background: linear-gradient(180deg, rgba(100,20,20,0.5) 0%, var(--maroon) 100%);
+      padding: 120px 32px 48px;
+      text-align: center;
+      border-bottom: 1px solid rgba(242,209,110,0.08);
+    }
+    .pp-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      color: var(--gold);
+      margin: 0 0 12px;
+    }
+    .pp-hero-sub { font-size: 1rem; color: var(--text-muted); margin: 0; }
+    .pp-chips {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .pp-chip {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.03em;
+    }
+    .pp-chip.green { background: rgba(94,207,110,0.15); color: #5ecf6e; border: 1px solid rgba(94,207,110,0.25); }
+    .pp-chip.gold  { background: rgba(242,209,110,0.12); color: var(--gold); border: 1px solid rgba(242,209,110,0.25); }
+    .pp-chip.muted { background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.08); }
+
+    @media (max-width: 900px) {
+      .trust-strip-inner { grid-template-columns: 1fr 1fr; }
+      .policy-outer { grid-template-columns: 1fr; }
+      .pp-toc { position: static; flex-direction: row; flex-wrap: wrap; gap: 6px; }
+      .toc-label { display: none; }
+      .pp-card { padding: 24px 20px; }
+    }
+    @media (max-width: 600px) {
+      .trust-strip-inner { grid-template-columns: 1fr; }
+      .rights-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══ -->
+<nav id="main-nav" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo" aria-label="Ghoongroo Home">
+    <span class="logo-icon">
+      <img src="assets/appicon.jpg" alt="Ghoongroo app icon" />
+    </span>
+    Ghoongroo
+  </a>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="index.html#taals">Taals</a></li>
+    <li><a href="index.html#learn">Learn</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══ HERO ══ -->
+<header class="pp-hero">
+  <p class="section-eyebrow">Legal</p>
+  <h1>Privacy Policy</h1>
+  <p class="pp-hero-sub">Ghoongroo is built with privacy-first architecture. Your data never leaves your device.</p>
+  <div class="pp-chips">
+    <span class="pp-chip green">
+      <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#5ecf6e;margin-right:6px;vertical-align:middle;animation:pulse-glow 1.6s infinite;"></span>
+      100% On-Device
+    </span>
+    <span class="pp-chip gold">Zero Cloud Storage</span>
+    <span class="pp-chip muted">Updated June 2026</span>
+  </div>
+</header>
+
+<!-- ══ TRUST STRIP ══ -->
+<div class="trust-strip" role="list" aria-label="Privacy highlights">
+
+  <div class="trust-strip-inner">
+    <div class="trust-card" role="listitem">
+      <div class="trust-icon-wrap">
+        <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <div class="trust-text">
+        <span class="trust-label">Data stays on device</span>
+        <span class="trust-detail">Fully local · never uploaded</span>
+      </div>
+    </div>
+
+    <div class="trust-card" role="listitem">
+      <div class="trust-icon-wrap">
+        <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <div class="trust-text">
+        <span class="trust-label">No account required</span>
+        <span class="trust-detail">Open and practice instantly</span>
+      </div>
+    </div>
+
+    <div class="trust-card" role="listitem">
+      <div class="trust-icon-wrap">
+        <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="1" y1="1" x2="23" y2="23"/>
+          <path d="M1 12s4-8 11-8"/>
+          <path d="M23 12s-4 8-11 8"/>
+        </svg>
+      </div>
+      <div class="trust-text">
+        <span class="trust-label">Zero tracking</span>
+        <span class="trust-detail">No analytics, no ads</span>
+      </div>
+    </div>
+
+    <div class="trust-card" role="listitem">
+      <div class="trust-icon-wrap">
+        <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <div class="trust-text">
+        <span class="trust-label">You own your data</span>
+        <span class="trust-detail">Delete anytime, instantly</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ POLICY BODY ══ -->
+<main>
+  <div class="policy-outer">
+
+    <!-- Sticky TOC -->
+    <aside class="pp-toc" aria-label="Table of contents">
+      <div class="toc-label">Contents</div>
+      <a href="#data-collection" class="toc-link active" data-section="data-collection">
+        <span class="toc-num">01</span> Data Collection
+      </a>
+      <a href="#data-storage" class="toc-link" data-section="data-storage">
+        <span class="toc-num">02</span> Data Storage
+      </a>
+      <a href="#data-sharing" class="toc-link" data-section="data-sharing">
+        <span class="toc-num">03</span> Data Sharing
+      </a>
+      <a href="#ai-processing" class="toc-link" data-section="ai-processing">
+        <span class="toc-num">04</span> AI Processing
+      </a>
+      <a href="#data-retention" class="toc-link" data-section="data-retention">
+        <span class="toc-num">05</span> Retention
+      </a>
+      <a href="#your-rights" class="toc-link" data-section="your-rights">
+        <span class="toc-num">06</span> Your Rights
+      </a>
+      <a href="#children" class="toc-link" data-section="children">
+        <span class="toc-num">07</span> Children
+      </a>
+      <a href="#changes" class="toc-link" data-section="changes">
+        <span class="toc-num">08</span> Changes
+      </a>
+      <a href="#contact" class="toc-link" data-section="contact">
+        <span class="toc-num">09</span> Contact
+      </a>
+    </aside>
+
+    <!-- Sections -->
+    <div class="policy-content">
+
+      <!-- 01 Data Collection -->
+      <section class="pp-card" id="data-collection">
+        <span class="pp-section-num">01 / DATA COLLECTION</span>
+        <h2>What We Collect</h2>
+
+        <p>Ghoongroo collects only what is strictly necessary to provide posture analysis, Grace Score computation, and practice history. Nothing more.</p>
+
+        <h3>What the App accesses</h3>
+        <div class="info-cards">
+          <div class="info-card">
+            <svg class="info-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/>
+              <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/>
+            </svg>
+            <strong>Camera &amp; Pose Data</strong>
+            <span>Real-time body landmarks via Apple Vision. Processed entirely on-device — no frames or images ever leave your phone.</span>
+          </div>
+          <div class="info-card">
+            <svg class="info-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+            </svg>
+            <strong>Practice Session Records</strong>
+            <span>Date, duration, Taal selected, Grace Score &amp; metric breakdown, and insight annotations — saved locally only.</span>
+          </div>
+          <div class="info-card">
+            <svg class="info-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+            </svg>
+            <strong>Audio Playback</strong>
+            <span>Tabla &amp; Taal audio. The app does not record your voice or any ambient audio from the microphone.</span>
+          </div>
+        </div>
+
+        <h3>What we never collect</h3>
+        <div class="denied-grid">
+          <div class="denied-item">
+            <svg class="denied-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Name or email
+          </div>
+          <div class="denied-item">
+            <svg class="denied-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Location data
+          </div>
+          <div class="denied-item">
+            <svg class="denied-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Device identifiers
+          </div>
+          <div class="denied-item">
+            <svg class="denied-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Usage analytics
+          </div>
+          <div class="denied-item">
+            <svg class="denied-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Contacts or photos
+          </div>
+          <div class="denied-item">
+            <svg class="denied-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Health / HealthKit
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 Data Storage -->
+      <section class="pp-card accent-green" id="data-storage">
+        <span class="pp-section-num">02 / DATA STORAGE</span>
+        <h2>Where Data Lives</h2>
+
+        <div class="callout green" role="note">
+          <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <div>
+            <strong>All data is stored locally on your iPhone.</strong>
+            <span>Nothing is transmitted to any external server, ever.</span>
+          </div>
+        </div>
+
+        <ul class="check-list">
+          <li>Session data is saved using iOS secure local storage</li>
+          <li>All data is protected by iOS device encryption</li>
+          <li>Data never leaves your device under any circumstance</li>
+          <li>No cloud sync — not to iCloud, not to our servers</li>
+          <li>Neither Anushka Sharma nor any third party can access your data</li>
+        </ul>
+      </section>
+
+      <!-- 03 Data Sharing -->
+      <section class="pp-card accent-blue" id="data-sharing">
+        <span class="pp-section-num">03 / DATA SHARING</span>
+        <h2>Data Sharing &amp; Third Parties</h2>
+
+        <div class="callout blue" role="note">
+          <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <div>
+            <strong>We do not share your data with anyone.</strong>
+          </div>
+        </div>
+
+        <ul class="check-list">
+          <li>No data is transmitted to our servers</li>
+          <li>No advertising SDKs or networks receive any data</li>
+          <li>No analytics services track your usage</li>
+          <li>No tracking libraries are embedded in the App</li>
+        </ul>
+
+        <p style="margin-top:16px;">The only external interaction that <em>may</em> occur: if you have enabled <strong style="color:var(--beige);">Share iPhone Analytics</strong> in iOS Settings, Apple may receive anonymized crash logs. This is controlled entirely by you in iOS Settings, not by Ghoongroo. See <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener noreferrer" style="color:var(--gold);">Apple's Privacy Policy</a> for details.</p>
+      </section>
+
+      <!-- 04 AI Processing -->
+      <section class="pp-card accent-gold" id="ai-processing">
+        <span class="pp-section-num">04 / ON-DEVICE AI</span>
+        <h2>On-Device AI Processing</h2>
+
+        <p>Ghoongroo uses Apple's on-device frameworks for all AI inference. The Grace Score Engine, pose analysis, and Insight Engine run entirely on your iPhone — no data is sent to external AI services.</p>
+
+        <div class="callout gold" role="note">
+          <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+          <div>
+            Your camera feed and pose data are processed by frameworks running locally.
+            <strong>No data is sent to any external AI model or cloud service.</strong>
+          </div>
+        </div>
+
+        <h3>Technologies used</h3>
+        <div class="tech-pills">
+          <span class="tech-pill">Apple Vision <span class="tech-sep">·</span> Pose detection</span>
+          <span class="tech-pill">Foundation Model <span class="tech-sep">·</span> AI coach feedback</span>
+          <span class="tech-pill">CoreML <span class="tech-sep">·</span> Posture classification</span>
+          <span class="tech-pill">SwiftUI <span class="tech-sep">·</span> On-device rendering</span>
+        </div>
+      </section>
+
+      <!-- 05 Data Retention -->
+      <section class="pp-card" id="data-retention">
+        <span class="pp-section-num">05 / RETENTION &amp; DELETION</span>
+        <h2>Data Retention</h2>
+
+        <ul class="check-list">
+          <li>All practice data remains on your device until you delete it</li>
+          <li>You can clear your history within the App settings</li>
+          <li>Deleting Ghoongroo from your iPhone permanently removes all associated data</li>
+          <li>We retain no copies — because nothing ever left your device</li>
+        </ul>
+      </section>
+
+      <!-- 06 Your Rights -->
+      <section class="pp-card accent-rose" id="your-rights">
+        <span class="pp-section-num">06 / YOUR RIGHTS</span>
+        <h2>Your Rights</h2>
+
+        <p>You have complete, direct control over all data Ghoongroo stores:</p>
+
+        <div class="rights-grid">
+          <div class="right-card">
+            <svg class="right-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+            </svg>
+            <h4>Access</h4>
+            <p>View all your practice data within the App at any time.</p>
+          </div>
+          <div class="right-card">
+            <svg class="right-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+            </svg>
+            <h4>Delete</h4>
+            <p>Remove individual sessions or all data at any time.</p>
+          </div>
+          <div class="right-card">
+            <svg class="right-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            </svg>
+            <h4>Portability</h4>
+            <p>Session data is accessible via standard iOS backup.</p>
+          </div>
+          <div class="right-card">
+            <svg class="right-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+            <h4>Control</h4>
+            <p>Revoke camera access anytime via iOS Settings.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 Children -->
+      <section class="pp-card accent-teal" id="children">
+        <span class="pp-section-num">07 / CHILDREN'S PRIVACY</span>
+        <h2>Children's Privacy</h2>
+        <p>Ghoongroo does not knowingly collect personal information from children under 13. The App requires no account, transmits no data, and contains no in-app purchases, advertising, or social features — making it inherently safe for younger users under parental supervision.</p>
+        <p>If you believe a child has provided personal information through the App, please contact us at the address below and we will promptly address the concern.</p>
+      </section>
+
+      <!-- 08 Changes -->
+      <section class="pp-card" id="changes">
+        <span class="pp-section-num">08 / POLICY CHANGES</span>
+        <h2>Changes to This Policy</h2>
+        <p>We may update this Privacy Policy occasionally. Changes will be reflected with an updated "Last Updated" date at the top of this page. Continued use of the App after changes are posted constitutes acceptance of the updated policy.</p>
+        <p>For significant changes, we may display an in-app notification.</p>
+      </section>
+
+      <!-- 09 Contact -->
+      <section class="pp-card accent-rose" id="contact">
+        <span class="pp-section-num">09 / CONTACT</span>
+        <h2>Contact</h2>
+        <p>For questions, concerns, or requests related to this Privacy Policy, please reach out:</p>
+
+        <div class="contact-block">
+          <a href="mailto:anushkasharma09812@gmail.com" class="contact-email-btn" id="privacy-email-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            anushkasharma09812@gmail.com
+          </a>
+          <div class="contact-meta">
+            <span>Developer: <strong style="color:var(--beige);">Anushka Sharma</strong></span>
+            <span>App: <strong style="color:var(--beige);">Ghoongroo</strong></span>
+          </div>
+          <p style="margin-top:12px;font-size:0.82rem;color:var(--text-muted);">
+            We aim to respond to all privacy-related inquiries within 14 business days.<br>
+            Or <a href="contact.html" style="color:var(--gold);">use the contact form →</a>
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer role="contentinfo">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand-name" style="display:flex;align-items:center;gap:10px;">
+        <span style="width:28px;height:28px;border-radius:7px;overflow:hidden;display:inline-flex;flex-shrink:0;border:1px solid rgba(242,209,110,0.3);">
+          <img src="assets/appicon.jpg" alt="" style="width:100%;height:100%;object-fit:cover;" />
+        </span>
+        Ghoongroo
+      </div>
+      <p>Your privacy is not a feature — it's a foundation. All processing happens on your device.</p>
+    </div>
+    <div class="footer-col">
+      <h4>App</h4>
+      <ul>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#taals">Taals</a></li>
+        <li><a href="index.html#learn">Learning Path</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="contact.html">Contact Developer</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Ghoongroo. All rights reserved.</p>
+    <p>Made with <span class="footer-heart" aria-label="love">♥</span> for Kathak &nbsp;·&nbsp; Anushka Sharma</p>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 60 ? 'rgba(20,6,6,0.92)' : 'rgba(29,8,8,0.7)';
+  }, { passive: true });
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+  });
+
+  // Sticky TOC active highlight on scroll
+  const sections = document.querySelectorAll('.pp-card[id]');
+  const tocLinks  = document.querySelectorAll('.toc-link');
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.toc-link[data-section="${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => io.observe(s));
+</script>
+</body>
+</html>

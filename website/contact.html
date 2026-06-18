@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Ghoongroo</title>
+  <meta name="description" content="Contact the Ghoongroo developer for support, feedback, or general inquiries about the iOS app." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪘</text></svg>" />
+  <style>
+    .contact-hero {
+      background: linear-gradient(180deg, rgba(100,20,20,0.5) 0%, var(--maroon) 100%);
+      padding: 120px 32px 48px;
+      text-align: center;
+      border-bottom: 1px solid rgba(242,209,110,0.08);
+    }
+    .contact-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      color: var(--gold);
+      margin: 0 0 12px;
+    }
+    .contact-hero-sub { font-size: 1rem; color: var(--text-muted); margin: 0; }
+
+    .contact-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 32px 100px;
+    }
+
+    /* Email card */
+    .email-card {
+      background: rgba(28,9,9,0.7);
+      border: 1px solid rgba(242,209,110,0.18);
+      border-radius: 20px;
+      padding: 48px 40px;
+      text-align: center;
+    }
+    .email-icon {
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      background: rgba(242,209,110,0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.6rem;
+    }
+    .email-card h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin: 0 0 8px;
+    }
+    .email-card-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 0 0 28px;
+      line-height: 1.6;
+    }
+    .email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--saffron) 100%);
+      color: var(--maroon);
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(242,209,110,0.25);
+    }
+    .email-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(242,209,110,0.35);
+      color: var(--maroon);
+    }
+    .email-btn svg { width: 18px; height: 18px; }
+
+    .email-address {
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Info strip */
+    .info-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .info-item {
+      background: rgba(242,209,110,0.05);
+      border: 1px solid rgba(242,209,110,0.12);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+    .info-item-icon { font-size: 1.3rem; margin-bottom: 6px; }
+    .info-item-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .info-item-value { font-size: 0.88rem; color: var(--beige); font-weight: 500; margin-top: 2px; }
+
+    /* FAQ section */
+    .faq-section {
+      margin-top: 48px;
+    }
+    .faq-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--gold);
+      text-align: center;
+      margin: 0 0 24px;
+    }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .faq-card {
+      background: rgba(28,9,9,0.6);
+      border: 1px solid rgba(242,209,110,0.12);
+      border-radius: 14px;
+      padding: 20px 24px;
+    }
+    .faq-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: var(--beige);
+      margin: 0 0 8px;
+    }
+    .faq-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    @media (max-width: 600px) {
+      .info-strip { grid-template-columns: 1fr; }
+      .email-card { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══ -->
+<nav id="main-nav" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo" aria-label="Ghoongroo Home">
+    <span class="logo-icon">
+      <img src="assets/appicon.jpg" alt="Ghoongroo app icon" />
+    </span>
+    Ghoongroo
+  </a>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="index.html#taals">Taals</a></li>
+    <li><a href="index.html#learn">Learn</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══ HERO ══ -->
+<header class="contact-hero">
+  <p class="section-eyebrow">Get In Touch</p>
+  <h1>Contact the Developer</h1>
+  <p class="contact-hero-sub">Support, feedback, or a friendly note — we'd love to hear from you</p>
+</header>
+
+<!-- ══ CONTACT BODY ══ -->
+<main>
+  <div class="contact-body">
+
+    <!-- Email Card -->
+    <div class="email-card">
+      <div class="email-icon" aria-hidden="true">✉️</div>
+      <h2>Send Us an Email</h2>
+      <p class="email-card-sub">For bug reports, feature requests, feedback, or any questions about Ghoongroo — drop us an email and we'll respond as soon as possible.</p>
+
+      <a href="mailto:anushkasharma09812@gmail.com" class="email-btn" id="contact-email-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        Email Anushka Sharma
+      </a>
+
+      <p class="email-address">anushkasharma09812@gmail.com</p>
+
+      <!-- Info strip -->
+      <div class="info-strip">
+        <div class="info-item">
+          <div class="info-item-icon">👩‍💻</div>
+          <div class="info-item-label">Developer</div>
+          <div class="info-item-value">Anushka Sharma</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">🍎</div>
+          <div class="info-item-label">Platform</div>
+          <div class="info-item-value">iOS 16+ · iPhone</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-icon">⏱</div>
+          <div class="info-item-label">Response Time</div>
+          <div class="info-item-value">2–5 business days</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-grid">
+
+        <div class="faq-card">
+          <h3>Does the app send my camera footage to the internet?</h3>
+          <p>No. All pose detection and Grace Score computation happens entirely on your device. No video, images, or body data leave your iPhone.</p>
+        </div>
+
+        <div class="faq-card">
+          <h3>Is Ghoongroo a replacement for a Kathak teacher?</h3>
+          <p>No — Ghoongroo is a practice companion, not a substitute for learning under a qualified Kathak guru. We recommend using it alongside formal training.</p>
+        </div>
+
+        <div class="faq-card">
+          <h3>Which taals does the app support?</h3>
+          <p>Ghoongroo currently includes Teental (16 beats), Jhaptal (10 beats), and Ektaal (12 beats). More taals may be added in future updates.</p>
+        </div>
+
+        <div class="faq-card">
+          <h3>How is the Grace Score calculated?</h3>
+          <p>Grace Score = (Posture Accuracy × 60%) + (Step Accuracy × 25%) + (Timing Precision × 15%). Chakkar spins add a 5-point bonus each.</p>
+        </div>
+
+        <div class="faq-card">
+          <h3>What iOS version does Ghoongroo require?</h3>
+          <p>Ghoongroo requires iOS 16.0 or later on iPhone. It is not available on iPad or macOS at this time.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer role="contentinfo">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand-name" style="display:flex;align-items:center;gap:10px;">
+        <span style="width:28px;height:28px;border-radius:7px;overflow:hidden;display:inline-flex;flex-shrink:0;border:1px solid rgba(242,209,110,0.3);">
+          <img src="assets/appicon.jpg" alt="" style="width:100%;height:100%;object-fit:cover;" />
+        </span>
+        Ghoongroo
+      </div>
+      <p>An AI-powered Kathak dance companion bridging classical tradition with modern technology.</p>
+    </div>
+    <div class="footer-col">
+      <h4>App</h4>
+      <ul>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#taals">Taals</a></li>
+        <li><a href="index.html#learn">Learning Path</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="contact.html">Contact Developer</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Ghoongroo. All rights reserved.</p>
+    <p>Made with <span class="footer-heart" aria-label="love">♥</span> for Kathak &nbsp;·&nbsp; Anushka Sharma</p>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 60 ? 'rgba(20,6,6,0.92)' : 'rgba(29,8,8,0.7)';
+  }, { passive: true });
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+  });
+</script>
+</body>
+</html>

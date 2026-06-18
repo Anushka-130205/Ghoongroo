@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ghoongroo — Your AI-Powered Kathak Companion</title>
+  <meta name="description" content="Ghoongroo is an AI-powered iOS app that helps you practice Kathak dance with real-time posture feedback, Grace Score analytics, and interactive Taal lessons." />
+  <meta property="og:title" content="Ghoongroo — Your AI-Powered Kathak Companion" />
+  <meta property="og:description" content="Master Kathak with real-time AI posture analysis, rhythmic Taal training, and personalized practice insights." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪘</text></svg>" />
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══ -->
+<nav id="main-nav" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo" aria-label="Ghoongroo Home">
+    <span class="logo-icon">
+      <img src="assets/appicon.jpg" alt="Ghoongroo app icon" />
+    </span>
+    Ghoongroo
+  </a>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#taals">Taals</a></li>
+    <li><a href="#learn">Learn</a></li>
+    <li><a href="contact.html">Contact</a></li>
+
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero-bg"></div>
+
+  <!-- Decorative concentric ring -->
+  <div class="hero-ring" aria-hidden="true"></div>
+
+  <!-- Dancer image -->
+  <div class="hero-image-wrap" aria-hidden="true">
+    <img src="assets/hero.png" alt="" />
+  </div>
+
+  <div class="hero-content">
+
+    <h1 class="hero-title" id="hero-heading">Ghoongroo</h1>
+
+    <div class="hero-divider" aria-hidden="true"></div>
+    <p class="hero-tagline">Your AI-powered Kathak companion — practice authentic poses, receive real-time feedback, and master the rhythm of Teental.</p>
+
+    <div class="hero-actions">
+      <a href="#features" class="btn-primary" id="hero-learn-btn">
+        Explore Features
+      </a>
+    </div>
+
+    <div class="hero-stats" role="list" aria-label="App highlights">
+      <div class="hero-stat" role="listitem">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Taals Included</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="stat-number">8+</div>
+        <div class="stat-label">Kathak Elements</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="stat-number">AI</div>
+        <div class="stat-label">Grace Score Engine</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURES ══ -->
+<section class="section section-mid" id="features" aria-labelledby="features-heading">
+  <div class="section-header">
+    <p class="section-eyebrow">Core Features</p>
+    <h2 class="section-title" id="features-heading">Everything a Kathak Student Needs</h2>
+    <p class="section-desc">From first steps to advanced Chakkars — Ghoongroo adapts to every level of your classical dance journey.</p>
+  </div>
+
+  <div class="features-grid">
+
+    <article class="glass-card feature-card reveal" id="feature-grace-score">
+      <div class="feature-icon" aria-hidden="true">🎯</div>
+      <h3 class="feature-title">Grace Score Engine</h3>
+      <p class="feature-desc">An AI scoring system using Cosine Similarity, Bone Vector Normalization, and Beat Synchronization. Measures posture accuracy, step alignment, and timing precision — expressed as a single Grace Score out of 100.</p>
+    </article>
+
+    <article class="glass-card feature-card reveal reveal-delay-1" id="feature-pose-detection">
+      <div class="feature-icon" aria-hidden="true">🤸</div>
+      <h3 class="feature-title">Real-Time Pose Detection</h3>
+      <p class="feature-desc">Powered by Apple Vision framework, the camera tracks 19 body landmarks in real time — spine, shoulders, arms, hips, knees, and ankles — giving instant posture overlays as you dance.</p>
+    </article>
+
+    <article class="glass-card feature-card reveal reveal-delay-2" id="feature-taal-engine">
+      <div class="feature-icon" aria-hidden="true">🥁</div>
+      <h3 class="feature-title">Interactive Taal Engine</h3>
+      <p class="feature-desc">A precision beat system with visual Sam, Taali, and Khaali markers. Practice to Teental (16 beats), Jhaptal (10 beats), or Ektaal (12 beats) with audio bols synchronized to your movements.</p>
+    </article>
+
+    <article class="glass-card feature-card reveal" id="feature-insight">
+      <div class="feature-icon" aria-hidden="true">💡</div>
+      <h3 class="feature-title">Insight Engine</h3>
+      <p class="feature-desc">Per-cycle analysis that detects rushing arms, missed Sam beats, posture instability, and graceful moments — delivering feedback in plain language so you can improve each taal cycle.</p>
+    </article>
+
+    <article class="glass-card feature-card reveal reveal-delay-1" id="feature-learn">
+      <div class="feature-icon" aria-hidden="true">📚</div>
+      <h3 class="feature-title">Structured Learning Path</h3>
+      <p class="feature-desc">Step-by-step lessons for every element — from beginner Namaskar and Thaat to advanced Chakkar spins. Each element has detailed visual guidance with costume context.</p>
+    </article>
+
+    <article class="glass-card feature-card reveal reveal-delay-2" id="feature-chakkar">
+      <div class="feature-icon" aria-hidden="true">🔄</div>
+      <h3 class="feature-title">Chakkar Spin Detection</h3>
+      <p class="feature-desc">The engine detects Chakkar spins through shoulder-crossing patterns in 2D pose data, awarding a 5-point bonus per detected spin — rewarding advanced technique automatically.</p>
+    </article>
+
+  </div>
+</section>
+
+<!-- ══ GRACE SCORE VISUAL ══ -->
+<section class="section section-dark" id="grace" aria-labelledby="grace-heading">
+
+  <!-- Top: heading centred -->
+  <div class="grace-header">
+    <p class="section-eyebrow">AI-Powered Analysis</p>
+    <h2 class="section-title" id="grace-heading">The Grace Score Engine</h2>
+    <p class="section-desc">Five body regions evaluated beat-by-beat — giving you a single, honest number and personalised coaching after every session.</p>
+  </div>
+
+  <!-- Bottom: three-column layout -->
+  <div class="grace-layout">
+
+    <!-- COL 1 — Large score ring -->
+    <div class="grace-ring-col reveal" role="img" aria-label="Sample Grace Score: 75 out of 100">
+      <div class="grace-ring-outer">
+        <svg viewBox="0 0 180 180" aria-hidden="true">
+          <defs>
+            <linearGradient id="graceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%"   stop-color="#F2D16E" />
+              <stop offset="100%" stop-color="#E8823A" />
+            </linearGradient>
+          </defs>
+          <circle class="gr-bg"   cx="90" cy="90" r="78" />
+          <circle class="gr-fill" cx="90" cy="90" r="78" />
+        </svg>
+        <div class="grace-ring-center">
+          <div class="grace-big-num">75</div>
+          <div class="grace-big-label">Grace Score</div>
+        </div>
+      </div>
+      <div class="grace-ring-status">Good — Keep Practicing</div>
+      <div class="grace-badges">
+        <span class="gbadge">Stable Posture</span>
+        <span class="gbadge">On Rhythm</span>
+        <span class="gbadge">Fluid Movement</span>
+      </div>
+    </div>
+
+    <!-- COL 2 — Clean metric bars -->
+    <div class="grace-metrics-col reveal reveal-delay-1" aria-label="Metric breakdown">
+
+      <div class="gmetric">
+        <div class="gmetric-head">
+          <span class="gmetric-name">Posture Accuracy</span>
+          <span class="gmetric-pct green-txt">82%</span>
+        </div>
+        <div class="gmetric-track"><div class="gmetric-bar green-bar" style="width:82%"></div></div>
+      </div>
+
+      <div class="gmetric">
+        <div class="gmetric-head">
+          <span class="gmetric-name">Joint Alignment</span>
+          <span class="gmetric-pct gold-txt">78%</span>
+        </div>
+        <div class="gmetric-track"><div class="gmetric-bar gold-bar" style="width:78%"></div></div>
+      </div>
+
+      <div class="gmetric">
+        <div class="gmetric-head">
+          <span class="gmetric-name">Balance Stability</span>
+          <span class="gmetric-pct gold-txt">74%</span>
+        </div>
+        <div class="gmetric-track"><div class="gmetric-bar gold-bar" style="width:74%"></div></div>
+      </div>
+
+      <div class="gmetric">
+        <div class="gmetric-head">
+          <span class="gmetric-name">Rhythm Sync</span>
+          <span class="gmetric-pct green-txt">88%</span>
+        </div>
+        <div class="gmetric-track"><div class="gmetric-bar green-bar" style="width:88%"></div></div>
+      </div>
+
+      <div class="gmetric">
+        <div class="gmetric-head">
+          <span class="gmetric-name">Movement Smoothness</span>
+          <span class="gmetric-pct gold-txt">70%</span>
+        </div>
+        <div class="gmetric-track"><div class="gmetric-bar gold-bar" style="width:70%"></div></div>
+      </div>
+
+      <div class="gmetric-legend">
+        <span class="legend-dot green-dot"></span> Strong &nbsp;&nbsp;
+        <span class="legend-dot gold-dot"></span> Developing
+      </div>
+    </div>
+
+    <!-- COL 3 — AI Coach feature description -->
+    <div class="grace-coach-col reveal reveal-delay-2">
+      <div class="coach-card">
+        <div class="coach-card-header">
+          <span class="coach-brain-icon" aria-hidden="true">🧠</span>
+          <div>
+            <div class="coach-card-title">AI Kathak Coach</div>
+            <div class="coach-card-sub">Runs entirely on-device · no cloud required</div>
+          </div>
+          <span class="coach-pulse" aria-hidden="true"></span>
+        </div>
+
+        <div class="coach-divider"></div>
+
+        <!-- Feature bullets — describes what the AI does, not fake feedback -->
+        <ul class="coach-feature-list" role="list">
+          <li role="listitem">
+            <span class="cfl-dot" aria-hidden="true"></span>
+            <div>
+              <strong>Per-metric feedback</strong>
+              <p>After each session, every score (Posture, Rhythm, Balance…) gets its own personalised coaching note — praise when you excel, a clear tip when you need to improve.</p>
+            </div>
+          </li>
+          <li role="listitem">
+            <span class="cfl-dot" aria-hidden="true"></span>
+            <div>
+              <strong>Strongest &amp; weakest regions</strong>
+              <p>The AI highlights which of your five body regions scored highest and which needs the most attention in your next practice.</p>
+            </div>
+          </li>
+          <li role="listitem">
+            <span class="cfl-dot" aria-hidden="true"></span>
+            <div>
+              <strong>Private by design</strong>
+              <p>All analysis runs on-device using Apple's Foundation Model. Your practice data never leaves your iPhone.</p>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+  </div>
+
+
+</section>
+
+<!-- ══ TAALS ══ -->
+
+
+<section class="section section-mid" id="taals" aria-labelledby="taals-heading">
+  <div class="section-header">
+    <p class="section-eyebrow">Rhythmic Cycles</p>
+    <h2 class="section-title" id="taals-heading">Practice with Authentic Taals</h2>
+    <p class="section-desc">Every taal is mapped beat-by-beat with Sam, Taali, and Khaali markers — so you always know where you are in the cycle.</p>
+  </div>
+
+  <div class="taal-grid">
+
+    <article class="glass-card taal-card reveal" id="taal-teental">
+      <div class="taal-cycle">16 Beats · 4+4+4+4</div>
+      <h3 class="taal-name">Teental</h3>
+      <div class="taal-beats" aria-label="Teental beat pattern">
+        <!-- Vibhaag 1 Sam -->
+        <span class="beat-dot sam"    title="Beat 1 — Sam"></span>
+        <span class="beat-dot"        title="Beat 2"></span>
+        <span class="beat-dot"        title="Beat 3"></span>
+        <span class="beat-dot"        title="Beat 4"></span>
+        <!-- Vibhaag 2 Taali -->
+        <span class="beat-dot taali"  title="Beat 5 — Taali"></span>
+        <span class="beat-dot"        title="Beat 6"></span>
+        <span class="beat-dot"        title="Beat 7"></span>
+        <span class="beat-dot"        title="Beat 8"></span>
+        <!-- Vibhaag 3 Khaali -->
+        <span class="beat-dot khaali" title="Beat 9 — Khaali"></span>
+        <span class="beat-dot"        title="Beat 10"></span>
+        <span class="beat-dot"        title="Beat 11"></span>
+        <span class="beat-dot"        title="Beat 12"></span>
+        <!-- Vibhaag 4 Taali -->
+        <span class="beat-dot taali"  title="Beat 13 — Taali"></span>
+        <span class="beat-dot"        title="Beat 14"></span>
+        <span class="beat-dot"        title="Beat 15"></span>
+        <span class="beat-dot"        title="Beat 16"></span>
+      </div>
+      <p class="taal-desc">The most common taal in Hindustani music. A 16-beat cycle in four equal vibhaags — the foundation every Kathak student learns first.</p>
+      <div style="margin-top: 16px; font-size: 0.8rem; color: var(--text-muted); font-style: italic;">Dha Dhin Dhin Dha | Dha Dhin Dhin Dha | Dha Tin Tin Ta | Ta Dhin Dhin Dha</div>
+    </article>
+
+    <article class="glass-card taal-card reveal reveal-delay-1" id="taal-jhaptal">
+      <div class="taal-cycle">10 Beats · 2+3+2+3</div>
+      <h3 class="taal-name">Jhaptal</h3>
+      <div class="taal-beats" aria-label="Jhaptal beat pattern">
+        <span class="beat-dot sam"   title="Beat 1 — Sam"></span>
+        <span class="beat-dot"       title="Beat 2"></span>
+        <span class="beat-dot taali" title="Beat 3 — Taali"></span>
+        <span class="beat-dot"       title="Beat 4"></span>
+        <span class="beat-dot"       title="Beat 5"></span>
+        <span class="beat-dot khaali"title="Beat 6 — Khaali"></span>
+        <span class="beat-dot"       title="Beat 7"></span>
+        <span class="beat-dot taali" title="Beat 8 — Taali"></span>
+        <span class="beat-dot"       title="Beat 9"></span>
+        <span class="beat-dot"       title="Beat 10"></span>
+      </div>
+      <p class="taal-desc">An asymmetric 10-beat cycle (2+3+2+3) with a distinctive lilting rhythm. Commonly used in semi-classical Kathak compositions.</p>
+      <div style="margin-top: 16px; font-size: 0.8rem; color: var(--text-muted); font-style: italic;">Dhi Na | Dhi Dhi Na | Ti Na | Dhi Dhi Na</div>
+    </article>
+
+    <article class="glass-card taal-card reveal reveal-delay-2" id="taal-ektaal">
+      <div class="taal-cycle">12 Beats · 2+2+2+2+2+2</div>
+      <h3 class="taal-name">Ektaal</h3>
+      <div class="taal-beats" aria-label="Ektaal beat pattern">
+        <span class="beat-dot sam"    title="Beat 1 — Sam"></span>
+        <span class="beat-dot"        title="Beat 2"></span>
+        <span class="beat-dot khaali" title="Beat 3 — Khaali"></span>
+        <span class="beat-dot"        title="Beat 4"></span>
+        <span class="beat-dot taali"  title="Beat 5 — Taali"></span>
+        <span class="beat-dot"        title="Beat 6"></span>
+        <span class="beat-dot khaali" title="Beat 7 — Khaali"></span>
+        <span class="beat-dot"        title="Beat 8"></span>
+        <span class="beat-dot taali"  title="Beat 9 — Taali"></span>
+        <span class="beat-dot"        title="Beat 10"></span>
+        <span class="beat-dot taali"  title="Beat 11 — Taali"></span>
+        <span class="beat-dot"        title="Beat 12"></span>
+      </div>
+      <p class="taal-desc">A meditative 12-beat cycle of six pairs. Often performed in Vilambit (slow) laya, Ektaal allows elaborate improvisation and nuanced expression.</p>
+      <div style="margin-top: 16px; font-size: 0.8rem; color: var(--text-muted); font-style: italic;">Dhin Dhin | DhaGe TiRaKiTa | Tu Na | Kat Ta | DhaGe TiRaKiTa | Dhi Na</div>
+    </article>
+
+  </div>
+
+  <!-- Beat Legend -->
+  <div style="display: flex; gap: 24px; justify-content: center; margin-top: 36px; flex-wrap: wrap;" aria-label="Beat marker legend">
+    <div style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--text-muted);">
+      <span class="beat-dot sam" style="display: inline-block;"></span> Sam (1st beat)
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--text-muted);">
+      <span class="beat-dot taali" style="display: inline-block;"></span> Taali (clap)
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--text-muted);">
+      <span class="beat-dot khaali" style="display: inline-block;"></span> Khaali (wave)
+    </div>
+  </div>
+</section>
+
+<!-- ══ LEARNING PATH ══ -->
+<section class="section section-dark" id="learn" aria-labelledby="learn-heading">
+  <div class="section-header">
+    <p class="section-eyebrow">Structured Curriculum</p>
+    <h2 class="section-title" id="learn-heading">Your Kathak Learning Path</h2>
+    <p class="section-desc">Three progressive difficulty levels — each unlocking new elements, more complex rhythms, and deeper feedback.</p>
+  </div>
+
+  <div class="path-grid">
+
+    <article class="glass-card path-card reveal" id="path-beginner">
+      <div class="path-level beginner">Beginner</div>
+      <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gold);">Foundation</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">Master the core postures and footwork that underpin all Kathak performance.</p>
+      <div class="path-elements" role="list">
+        <div class="path-element" role="listitem">Namaskar</div>
+        <div class="path-element" role="listitem">Thaat</div>
+        <div class="path-element" role="listitem">Tatkaar</div>
+      </div>
+    </article>
+
+    <article class="glass-card path-card reveal reveal-delay-1" id="path-intermediate">
+      <div class="path-level intermediate">Intermediate</div>
+      <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gold);">Expression</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">Layer rhythm, hand gestures, and complex taal cycles onto your foundation.</p>
+      <div class="path-elements" role="list">
+        <div class="path-element" role="listitem">Teental — 16 beats</div>
+        <div class="path-element" role="listitem">Hasta Mudra</div>
+        <div class="path-element" role="listitem">Pataka · Tripataka · Ardhachandra</div>
+      </div>
+    </article>
+
+    <article class="glass-card path-card reveal reveal-delay-2" id="path-advanced">
+      <div class="path-level advanced">Advanced</div>
+      <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gold);">Mastery</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">Command spins, asymmetric rhythms, and advanced layakari divisions.</p>
+      <div class="path-elements" role="list">
+        <div class="path-element" role="listitem">Chakkar Spins</div>
+        <div class="path-element" role="listitem">Jhaptal — 10 beats</div>
+        <div class="path-element" role="listitem">Ektaal — 12 beats</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+
+<!-- ══ COMING SOON ══ -->
+<section class="download-section" id="download" aria-labelledby="download-heading">
+  <p class="section-eyebrow">Coming Soon</p>
+  <h2 class="section-title" id="download-heading" style="font-size: clamp(2rem, 4vw, 3.2rem); color: var(--gold);">Begin Your Kathak Journey</h2>
+  <p style="color: var(--text-muted); max-width: 460px; margin: 16px auto 0; font-size: 0.95rem; line-height: 1.7;">Ghoongroo will be available on the App Store soon. Start practicing authentic Kathak with AI guidance from day one.</p>
+
+  <div class="app-icon-display" style="margin-top: 36px;">
+    <img src="assets/appicon.jpg" alt="Ghoongroo app icon" />
+  </div>
+
+  <p style="margin-top: 20px; font-size: 0.8rem; color: var(--text-muted);">Requires iOS 16.0 or later · iPhone · Compatible with all modern iPhones</p>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer role="contentinfo">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand-name" style="display:flex; align-items:center; gap:10px;">
+      <span style="width:28px;height:28px;border-radius:7px;overflow:hidden;display:inline-flex;flex-shrink:0;border:1px solid rgba(242,209,110,0.3);">
+        <img src="assets/appicon.jpg" alt="" style="width:100%;height:100%;object-fit:cover;" />
+      </span>
+      Ghoongroo
+    </div>
+      <p>An AI-powered Kathak dance companion that bridges classical tradition with modern technology — helping students at every level practice with precision and grace.</p>
+    </div>
+    <div class="footer-col">
+      <h4>App</h4>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#taals">Taals</a></li>
+        <li><a href="#learn">Learning Path</a></li>
+
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        <li><a href="contact.html">Contact Developer</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Ghoongroo. All rights reserved.</p>
+    <p>Made with <span class="footer-heart" aria-label="love">♥</span> for Kathak &nbsp;·&nbsp; Anushka Sharma</p>
+  </div>
+</footer>
+
+<script>
+  // ── Nav scroll effect
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 60
+      ? 'rgba(20,6,6,0.92)'
+      : 'rgba(29,8,8,0.7)';
+  }, { passive: true });
+
+  // ── Mobile hamburger
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+  });
+
+  // ── Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // ── Particle canvas
+  const canvas = document.createElement('canvas');
+  canvas.id = 'particle-canvas';
+  canvas.setAttribute('aria-hidden', 'true');
+  document.body.prepend(canvas);
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  for (let i = 0; i < 60; i++) {
+    particles.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      r: Math.random() * 1.5 + 0.3,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: -Math.random() * 0.4 - 0.1,
+      o: Math.random() * 0.5 + 0.2
+    });
+  }
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(242, 209, 110, ${p.o})`;
+      ctx.fill();
+      p.x += p.vx; p.y += p.vy;
+      if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
+    });
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+</script>
+</body>
+</html>
